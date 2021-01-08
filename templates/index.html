@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>GitHub Statistics </title>
+{% endblock %}
+
+{% block body %}
+<!-- Navigation -->
+<!-- Image and text -->
+<ul>
+
+  <li><a class="active" href="https://github.com/">Strona GitHub</a></li>
+  <li><a class="active" href="https://en.wikipedia.org/wiki/GitHub">Więcej o GitHub</a></li>
+</ul>
+
+
+<div class="content">
+    <h1 style="text-align: center">Popularność jęzków programowania</h1>
+    <h4>Statystyki odnośnie topowych języków oraz projektów sporządzone są na podstawie danych z serwera GitHub.</h4>
+
+        <div class="card border-primary mb-3" style="width: 50rem;;">
+        <div class="card-body text-primary">
+            <h5 class="card-title">Możliwości jakie daje narzędzie</h5>
+            <p class="card-text">     Dzięki tej aplikacji webowej na bieżąco możesz śledzić podstawowe statystyki dotyczące popularności języków programowania i
+                rozpatrywać je pod różnym kątem. <br>
+                   <br>  Poniżej znajdują się cztery ramki, które zawierają opis danej analizy oraz przyciski, które dają możliwość
+                wyświetlenia wizualizacji danych oraz zapisu wykresu do pliku w formacie PDF. Dane pobierane są z serweru GitHub w momencie naciśnięcia guzika,
+                zatem możesz mieć pewność, że analizy są aktualne. Z aplikacji możesz korzystać do woli! Już teraz możesz zapisać porządane statystki do pliku,
+                a następnie powrócić do aplikacji dokładnie za rok i porównać jak zmieniły się tredny w świecie programistów. <br>
+                <br>   Dobrej zabawy!
+
+            </p>
+    </div>
+        </div>
+    </div>
+    <div class = "row">
+    <div class="card text-white bg-primary mb-3" id = "pythonProjects"  style="max-width: 45rem;">
+      <div class="card-header">Statystyki dotyczące języka Python</div>
+      <div class="card-body">
+        <h5 class="card-title">Najbardziej popularne projekty napisane w języku Python</h5>
+        <p class="card-text">Język Python został wyróżniony na tle pozostałych języków, mimo, że nie koniecznie jest najbardziej popularny.
+            Jednak ten projekt w większości napisany jest w tym języku, przysługuje mu specjalne traktowanie. <br>
+            Jeżeli chcesz dowiedzieć się więcej o najwyżej ocenionych projektach stworzonych przy użytciu Pythona wciśnij poniższy przycisk.
+            Zostanie wyświetlony wykres, pokazaujący projekty, które zostały oznaczone największą liczbą gwiazdek przez użytkoników GitHuba.
+            Po najechaniu kursorem na odpowiednią kolumnę zostanie pokazana nazwa projektu oraz poniżej liczba zdobytych gwiazdek.
+            Jeżeli chcesz przejść do dokumentacji danego projektu, kliknij na odpowiedni słupek.
+        </p>
+          <form action="/pythonprojects/" method="post">
+                <button name ="pythonProjects" class="btn btn-primary vertical-center"  type="submit">Wyświetl wykres</button>
+            </form>
+          <form action="/PDFpythonprojects/" method="post">
+                <button name ="PDFpythonProjects" class="btn btn-primary"  type="submit">Zapisz do pliku PDF</button>
+            </form>
+      </div>
+    </div>
+    <div class="card text-white bg-primary mb-3" id="topProjects" style="max-width: 45rem;">
+      <div class="card-header">Statystyki dotyczące wszystkich języków programowania</div>
+      <div class="card-body">
+        <h5 class="card-title">Najbardziej popularne projekty napisane przy użyciu dowolnego języka </h5>
+        <p class="card-text">Analiza wykonana analogicznie do poprzedniego przypadku, jednak tym razem projekty nie są ograniczone do języka Python.
+            Tym razem programista mógł posłużyć się dowolnym narzędziem podczas tworzenia swojej pracy. Pokazane są projekty, które zostały nagrodzone
+            największą liczbą gwiazdek. Podobnie jak poprzednio istnieje możliwość sprawdzenia liczby otrzymanych gwiazdek oraz przejścia do dokumentacji projektu. </p>
+          <form action="/topprojects/" method="post">
+                <button class="btn btn-primary" type="submit" onclick="exec('python top_projects.py');">Wyświetl wykres</button>
+            </form>
+          <form action="/PDFtopprojects/" method="post">
+                <button class="btn btn-primary" type="submit" onclick="exec('python top_projects.py');">Zapisz do pliku PDF</button>
+            </form>
+      </div>
+    </div>
+    </div>
+    <div class = "row">
+    <div class="card text-white bg-primary mb-3" id = "topLanguages" style="max-width: 45rem;">
+      <div class="card-header">Statystyki dotyczące wszystkich języków programowania</div>
+      <div class="card-body">
+        <h5 class="card-title">Najczęściej stosowane języki programowania</h5>
+        <p class="card-text">Ta część analizy skupia się nie tyle na pojedyńczych projektach i ich treści, a ich zawartości - a konkretnie języku, który został
+            wykorzystany do realizacji projektu. Do wizualizacji został zastosowany diagram kołowy, który obrazuje procentowy udział różnych języków programowania
+            wśród najlepszych projektów. Naprowadzenie kursora na daną część diagramu, bądź legendy spowoduje wyświetlenie nazwy języka oraz procentowanego udziału,
+            natomiast klinięcie na dany element legendy daje możliwość wykluczenia/ponownego dołączenia odpowiedniego elementu względem całości wykresu.</p>
+          <form action="/toplanguagues/" method="post">
+                <button name ="topLanguages" class="btn btn-primary"  type="submit">Wyświetl wykres</button>
+            </form>
+          <form action="/PDFtoplanguagues/" method="post">
+                <button name ="PDFtopLanguages" class="btn btn-primary"  type="submit">Zapisz do pliku PDF</button>
+            </form>
+      </div>
+    </div>
+    <div class="card text-white bg-primary mb-3" id= "timeline" style="max-width: 45rem;">
+      <div class="card-header">Statystyki dotyczące wszystkich języków programowania</div>
+      <div class="card-body">
+        <h5 class="card-title">Analizy dotyczące dynamiki zmian w czasie </h5>
+        <p class="card-text">Ta część jest poświęcona analizie dynamiki zmian pod różnymi kątami. Ma na celu zwrócenie uwagi na rozwój najczęściej stosowananych języków programowania.
+            Przedstawione zostały 3 wykresy, a każdy z nich zwraca uwagę na inny aspekt. Lata, które pojawią się na wykresie po wciśnięciu odpowiedniego przycisku są
+            dobierane automatycznie względem powstawania najpopularnejszych repozytoriów - ich liczba oraz wartości mogą ulec w zmianie w zależności od aktualnego rozrzutu dat
+            umieszczania projektów na serwisie. <br><br>
+            Pierwszy z nich to wykres liniowy pokazujący krzywę popularności każdego z topowych języków w odpowiednich latach. Przesuń kursorem myszki po legendzie, aby
+            wyróżnić dany język, lub kliknij na jego nazwę, aby go wykluczyć z analizy.
+        </p>
+          <form action="/timeline/" method="post">
+                <button name ="timeLine" class="btn btn-primary"  type="submit">Wyświetl wykres</button>
+            </form>
+          <form action="/PDFtimeline/" method="post">
+                <button name ="PDFtimeLine" class="btn btn-primary"  type="submit">Zapisz do pliku PDF</button>
+            </form>
+                 <p class="card-text"><br>Drugi wykres stanowi procentową wizualizację popularności stosowalności różnych języków zagregowaną na poszczególne lata.
+               Podobnie jak w poprzednim przykładzie możliwe jest modyfikowanie wykresu poprzez manipulację legendą. <br>
+        </p>
+          <form action="/barstacked/" method="post">
+                <button name ="timeBarStacked" class="btn btn-primary"  type="submit">Wyświetl wykres </button>
+            </form>
+          <form action="/PDFbarstacked/" method="post">
+                <button name ="PDFtimeBarStacked" class="btn btn-primary"  type="submit">Zapisz do pliku PDF</button>
+            </form>
+             <p class="card-text"> <br>Trzecią wizualizację stanowi wykres słupkowy, który obrazuję liczbę powstawych projektów z użyciem
+                 konkretnego języka programowania w poszczególnych latach. Legenda daje użytkownikowi analogiczne możliwości do poprzednich analiz. <br>
+        </p>
+          <form action="/barhorizontal/" method="post">
+                <button name ="timeBarHorizontal" class="btn btn-primary"  type="submit">Wyświetl wykres</button>
+            </form>
+          <form action="/PDFbarhorizontal/" method="post">
+                <button name ="PDFtimeBarHorizontal" class="btn btn-primary"  type="submit">Zapisz do pliku PDF</button>
+            </form>
+      </div>
+    </div>
+    </div>
+{% endblock %}
